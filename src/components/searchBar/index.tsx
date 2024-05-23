@@ -6,9 +6,10 @@ import Ant from 'react-native-vector-icons/AntDesign'
 
 type SearchInputPropsTypes = {
     searchValue : string
-    setSearchValue : (value : string) => void
+    setSearchValue : (value : string) => void,
+    placeHolder : string
 }
-const SearchInput : React.FC<SearchInputPropsTypes> = ({searchValue, setSearchValue}) => {
+const SearchInput : React.FC<SearchInputPropsTypes> = ({searchValue, setSearchValue, placeHolder}) => {
     const colors = useThemeColors()
 
     return (
@@ -18,7 +19,7 @@ const SearchInput : React.FC<SearchInputPropsTypes> = ({searchValue, setSearchVa
                 onChangeText={setSearchValue}
                 selectionColor={colors.accent}
                 style={[{ backgroundColor: colors.secondary, color: colors.primary }, styles.input]}
-                placeholder={'Search by episode name '}
+                placeholder={placeHolder}
                 placeholderTextColor={'#ccc'}
             />
             <Ant name='search1' size={24} color={colors.accent} />

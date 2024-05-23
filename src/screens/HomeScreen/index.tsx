@@ -16,7 +16,9 @@ const HomeScreen = () => {
 
 
 
-  const filteredEpisodes = data?.results.filter((item: EpisodeItemTypes) => item.name.includes(searchValue) || item.episode.includes(searchValue))
+  const filteredEpisodes = data?.results.filter((item: EpisodeItemTypes) => (
+    item.name.toLocaleLowerCase().includes(searchValue.toLowerCase()) || item.episode.toLocaleLowerCase().includes(searchValue.toLowerCase()))
+  )
 
   const renderItems: ListRenderItem<EpisodeItemTypes> = ({ item, index }) => <EpisodeCard episode={item} />
 
@@ -29,7 +31,7 @@ const HomeScreen = () => {
       renderItem={renderItems}
       snapToAlignment='center'
       showsVerticalScrollIndicator={false}
-      ListHeaderComponent={<SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />}
+      ListHeaderComponent={<SearchInput searchValue={searchValue} setSearchValue={setSearchValue} placeHolder='Search by episode name' />}
 
     />
   }

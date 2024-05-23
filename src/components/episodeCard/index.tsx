@@ -22,12 +22,12 @@ const EpisodeCard: React.FC<EpisodeCardPropsType> = ({ episode }) => {
         <TouchableOpacity style={[{ backgroundColor: colors.secondary }, styles.container]} activeOpacity={.7} onPress={handleEpisodeDetail}>
             
             <View style={styles.top_content_container}>
-                <Text style={{ color: colors.primary }}>{episode.name}</Text>
-                <Text style={{ color: colors.accent }}>{episode.episode}</Text>
+                <Text style={{ color: colors.primary }}>{episode?.name}</Text>
+                <Text style={{ color: colors.accent }}>{episode?.episode}</Text>
             </View>
             
-            <Text style={{ color: colors.primary }}>{episode.air_date}</Text>
-            <Image source={{ uri: episode.url }} width={250} height={250} />
+            <Text style={{ color: colors.primary }}>{episode?.air_date}</Text>
+            <Image source={{ uri: episode?.url }} width={250} height={250} />
         </TouchableOpacity>
     )
 }
