@@ -1,19 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appearance from '../features/appearance'
 import EpisodeService from '../../services/EpisodeService'
+import CharacterService from '../../services/CharacterService'
 
 
 const store = configureStore({
 
     reducer : {
         appearance,
-        [EpisodeService.reducerPath] : EpisodeService.reducer
+        [EpisodeService.reducerPath] : EpisodeService.reducer,
+        [CharacterService.reducerPath] : CharacterService.reducer
     },
 
     middleware: (getDefaultMiddleware) => {
         return (
             getDefaultMiddleware()
                 .concat(EpisodeService.middleware)
+                .concat(CharacterService.middleware)
         )
     }
 

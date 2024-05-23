@@ -14,11 +14,11 @@ const HomeScreen = () => {
   const colors = useThemeColors()
   const [searchValue, setSearchValue] = useState<string>('')
 
+
+
+  const filteredEpisodes = data?.results.filter((item: EpisodeItemTypes) => item.name.includes(searchValue) || item.episode.includes(searchValue))
+
   const renderItems: ListRenderItem<EpisodeItemTypes> = ({ item, index }) => <EpisodeCard episode={item} />
-
-
-  const filteredEpisodes = data?.results.filter((item : EpisodeItemTypes) =>  item.name.includes(searchValue) || item.episode.includes(searchValue))
-
 
   const renderContent = () => {
     if (isLoading) return <Loading />
@@ -29,7 +29,7 @@ const HomeScreen = () => {
       renderItem={renderItems}
       snapToAlignment='center'
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ marginTop:12, }}
+      ListHeaderComponent={<SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />}
 
     />
   }
@@ -38,7 +38,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.third }}>
       <MainLayout>
-        <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
+
         {
           renderContent()
         }

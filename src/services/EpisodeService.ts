@@ -22,6 +22,16 @@ const EpisodeService = createApi({
                 }
             }
         }),
+
+        fetchEpisodeDetails: builder.query({
+            query: (episode_id : number) => {
+                return {
+                    url: `/episode/${episode_id}`,
+                    method: 'GET',
+                    
+                }
+            }
+        }),
        
 
        
@@ -31,5 +41,6 @@ const EpisodeService = createApi({
 })
 export const {
     useFetchAllEpisodesQuery,
+    useFetchEpisodeDetailsQuery
 } = EpisodeService
 export default EpisodeService

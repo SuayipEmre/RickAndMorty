@@ -9,7 +9,7 @@ import { useThemeColors } from '../store/features/appearance/hooks';
 
 
 type BottomNavigatorRootStackParamList = {
-  ProfileScreen : undefined
+  FavoritesScreen : undefined
   MainNavigator: NavigatorScreenParams<MainNavigatorStackParamList>
 }
 const Tab = createBottomTabNavigator<BottomNavigatorRootStackParamList>()
@@ -43,7 +43,7 @@ const RootNavigator = () => {
           }}
         />
         <Tab.Screen
-          name='ProfileScreen'
+          name='FavoritesScreen'
           component={FavoritesScreen}
          
         />
