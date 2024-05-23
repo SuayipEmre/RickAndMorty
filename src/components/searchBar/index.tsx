@@ -3,11 +3,13 @@ import React, { useState } from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import Ant from 'react-native-vector-icons/AntDesign'
 
-const SearchInput = () => {
-    const [searchValue, setSearchValue] = useState<string>('')
-    const colors = useThemeColors()
 
-   
+type SearchInputPropsTypes = {
+    searchValue : string
+    setSearchValue : (value : string) => void
+}
+const SearchInput : React.FC<SearchInputPropsTypes> = ({searchValue, setSearchValue}) => {
+    const colors = useThemeColors()
 
     return (
         <View style={styles.container}>
