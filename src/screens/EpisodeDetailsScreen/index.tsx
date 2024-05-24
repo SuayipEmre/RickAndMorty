@@ -48,10 +48,7 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
 
 
     const renderCharactersItems: ListRenderItem<CharacterArrayTypes> = ({ item }) => <SmallCharacterCard
-        id={item.character.id}
-        image={item.character.image}
-        name={item.character.name}
-        status={item.character.status}
+    character={item.character}
     />
 
 

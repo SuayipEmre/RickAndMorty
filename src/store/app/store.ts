@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appearance from '../features/appearance'
+import removeCharacterModal from '../features/removeCharacterModal'
 import EpisodeService from '../../services/EpisodeService'
 import CharacterService from '../../services/CharacterService'
 
@@ -8,6 +9,7 @@ const store = configureStore({
 
     reducer : {
         appearance,
+        removeCharacterModal,
         [EpisodeService.reducerPath] : EpisodeService.reducer,
         [CharacterService.reducerPath] : CharacterService.reducer
     },

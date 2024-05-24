@@ -5,10 +5,15 @@ import { getFavoriteCharactersFromStorage } from '../../utils/getFavoriteCharact
 import MainLayout from '../../layouts/MainLayout'
 import SmallCharacterCard from '../../components/smallCharacterCard'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useIsRemoveCharacterModalOpen } from '../../store/features/removeCharacterModal/hooks'
+import RemoveFavoriteCharacterModal from '../../components/removeFavoriteCharacterModal'
+import { setRemoveCharactersModal } from '../../store/features/removeCharacterModal/actions'
 
 const FavoritesScreen = () => {
   const colors = useThemeColors()
-  const [favorites, setFavorites] = useState<Character | []>([])
+  const [favorites, setFavorites] = useState<Character[] | []>([])
+  const [selectedCharacter, setSelectedCharacter] = useState<Character>({} as Character)
+  const isRemoveModalOpen = useIsRemoveCharacterModalOpen()
 
   useEffect(() => {
 
@@ -21,13 +26,20 @@ const FavoritesScreen = () => {
     getFavorites()
   }, [])
 
+  const handleRemoveCharacterFromFavorites = (character : Character ) => {
+    setRemoveCharactersModal(!isRemoveModalOpen)
+    setSelectedCharacter(character)
+  }
+
+
   const renderCharactersItems: ListRenderItem<Character> = ({ item }) => <SmallCharacterCard
-    id={item.id}
-    image={item.image}
-    name={item.name}
-    status={item.status}
     isFavorites
+    onPress={(character : Character) => handleRemoveCharacterFromFavorites(character)}
+    character={item}
   />
+
+ 
+
   return (
     <SafeAreaView style={[{ backgroundColor: colors.third }, styles.container]}>
       <MainLayout>
@@ -40,6 +52,8 @@ const FavoritesScreen = () => {
           showsVerticalScrollIndicator={false}
 
         />
+
+        <RemoveFavoriteCharacterModal characterName={selectedCharacter.name} characterID={selectedCharacter.id} />
       </MainLayout>
     </SafeAreaView>
   )

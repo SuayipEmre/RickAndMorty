@@ -10,6 +10,7 @@ import Loading from '../../components/loadingAnimation'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getFavoriteCharactersFromStorage } from '../../utils/getFavoriteCharacters'
+import { addFavoriteCharacterToStorage } from '../../utils/addToFavorites'
 
 type Props = NativeStackScreenProps<MainNavigatorStackParamList, 'CharacterDetailsScreen'>
 
@@ -21,23 +22,8 @@ const CharacterDetailsScreen: React.FC<Props> = ({ route }) => {
 
 
     const handleAddToFavorites = async () => {
-        const favoriteCharacters = await getFavoriteCharactersFromStorage()
-
-
-
-        const newFavorites = [ ...favoriteCharacters, {...data} ]
-        try {
-            await AsyncStorage.setItem('favorites', JSON.stringify(newFavorites))
-            console.log('success !')
-
-        } catch (error) {
-            console.log("error : ", error)
-
-        }
-
-        console.log(favoriteCharacters);
-        
-
+   
+        await addFavoriteCharacterToStorage(data)
 
     }
     const renderContent = () => {
