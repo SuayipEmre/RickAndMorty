@@ -1,11 +1,10 @@
-import { Alert, Dimensions, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {  Dimensions, Modal, StyleSheet, Text,  View } from 'react-native'
 import React from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import ModalButton from '../modalButton'
 import { setRemoveCharactersModal } from '../../store/features/removeCharacterModal/actions'
 import { useIsRemoveCharacterModalOpen } from '../../store/features/removeCharacterModal/hooks'
-import { removeFavoriteCharacter } from '../../utils/removeFavoriteCharacter'
-import { remove } from '../../store/features/favoriteCharacterActions/actions'
+import { removeCharacterFromFavorites } from '../../store/features/favoriteCharacterActions/actions'
 
 
 type RemoveFavoriteCharacterModalPropsTypes = {
@@ -33,7 +32,7 @@ const RemoveFavoriteCharacterModal : React.FC<RemoveFavoriteCharacterModalPropsT
                                 flexDirection:'row',
                                 justifyContent:'space-between',
                         }}>
-                          <ModalButton isApproveButton message='Evet' onPress={() => remove(characterID)} />
+                          <ModalButton isApproveButton message='Evet' onPress={() => removeCharacterFromFavorites(characterID)} />
                           <ModalButton isApproveButton={false} message='Hayır' onPress={() => setRemoveCharactersModal(false)} />
 
                        

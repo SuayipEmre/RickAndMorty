@@ -61,11 +61,11 @@ const EpisodeDetailsScreenContainer: React.FC<EpisodeDetailsScreenContainerProps
                 snapToAlignment='center'
                 ListHeaderComponent={charactersListHeaderItems}
                 showsVerticalScrollIndicator={false}
-                ListFooterComponent={ <Pagination
+                ListFooterComponent={<Pagination
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={setCurrentPage}
-                  />}
+                />}
 
             />
         </View>
