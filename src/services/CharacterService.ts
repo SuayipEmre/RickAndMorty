@@ -14,7 +14,7 @@ const CharacterService = createApi({
     endpoints: (builder) => ({
 
         fetchCharacter: builder.query({
-            query: (character_id : string) => {
+            query: (character_id : number) => {
                 return {
                     url: `/character/${character_id}`,
                     method: 'GET',

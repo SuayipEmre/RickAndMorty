@@ -1,4 +1,4 @@
-import { Dimensions, FlatList, Image, ListRenderItem, StyleSheet, Text, View } from 'react-native'
+import { FlatList,  ListRenderItem,  Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { MainNavigatorStackParamList } from '../../types/NavigatorsTypes'
@@ -7,6 +7,7 @@ import MainLayout from '../../layouts/MainLayout'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import EpisodeCard from '../../components/episodeCard'
 import SearchInput from '../../components/searchBar'
+import SmallCharacterCard from '../../components/smallCharacterCard'
 
 
 type Props = NativeStackScreenProps<MainNavigatorStackParamList, 'EpisodeDetails'>
@@ -21,7 +22,6 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
     const [searchCharacterValue, setSearchCharacterValue] = useState<string>('')
     const [characters, setCharacters] = useState<[] | CharacterArrayTypes[]>([])
     const [charactersLoading, setCharactersLoading] = useState(true)
-
     const { data, isLoading, isError } = useFetchEpisodeDetailsQuery(route.params.episode_id)
     const colors = useThemeColors()
 
@@ -44,16 +44,15 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
                 setCharactersLoading(false);
             }
         });
-    }, [data, isError, isLoading]);
+    }, [data, isError, isLoading])
 
 
-    const renderCharactersItems: ListRenderItem<CharacterArrayTypes> = ({ item }) => <View style={[{ backgroundColor: colors.secondary }, styles.image_card_container]}>
-        <Image style={styles.image} source={{ uri: item?.character?.image }} />
-        <View>
-            <Text style={{ color: colors.accent, fontSize: 20, }}>{item?.character?.name.substring(0, 20)} {item?.character?.name.length > 19 && '...'}</Text>
-            <Text style={{ color: colors.primary, opacity: .7 }}>{item?.character?.status}</Text>
-        </View>
-    </View>
+    const renderCharactersItems: ListRenderItem<CharacterArrayTypes> = ({ item }) => <SmallCharacterCard
+        id={item.character.id}
+        image={item.character.image}
+        name={item.character.name}
+        status={item.character.status}
+    />
 
 
     const charactersListHeaderItems = () => (
@@ -64,6 +63,7 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
 
         </>
     )
+
 
 
     return (
@@ -86,22 +86,3 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
 }
 
 export default EpisodeDetails
-
-const { width, height } = Dimensions.get('screen')
-const styles = StyleSheet.create({
-
-    image_card_container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginVertical: 10,
-        height: height * 0.15,
-        alignItems: 'center',
-        paddingHorizontal: 10,
-        borderRadius: 12,
-    },
-    image: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-    },
-})

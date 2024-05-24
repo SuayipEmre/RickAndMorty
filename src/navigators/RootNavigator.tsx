@@ -6,7 +6,7 @@ import { MainStack } from './MainStack';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import Entypo from 'react-native-vector-icons/Entypo'
 import { useThemeColors } from '../store/features/appearance/hooks';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 type BottomNavigatorRootStackParamList = {
   FavoritesScreen : undefined
@@ -45,6 +45,12 @@ const RootNavigator = () => {
         <Tab.Screen
           name='FavoritesScreen'
           component={FavoritesScreen}
+          options={{
+            tabBarIcon : ({color}) => (
+              <MaterialIcons name='favorite' color={color} size={24} />
+            ) ,
+            tabBarLabel: 'Favorites'
+          }}
          
         />
       </Tab.Navigator>
