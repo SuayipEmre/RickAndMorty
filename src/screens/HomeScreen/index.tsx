@@ -1,52 +1,58 @@
-import { ListRenderItem, Text} from 'react-native'
-import React, { useState } from 'react'
-import { useFetchAllEpisodesQuery } from '../../services/EpisodeService'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import SearchInput from '../../components/searchBar'
-import { useThemeColors } from '../../store/features/appearance/hooks'
-import Loading from '../../components/loadingAnimation'
-import { FlatList } from 'react-native'
-import EpisodeCard from '../../components/episodeCard'
-import MainLayout from '../../layouts/MainLayout'
+import React, { useState } from 'react';
+import { ListRenderItem, Text, FlatList, SafeAreaView } from 'react-native';
+import { useFetchAllEpisodesQuery } from '../../services/EpisodeService';
+import SearchInput from '../../components/searchBar';
+import { useThemeColors } from '../../store/features/appearance/hooks';
+import Loading from '../../components/loadingAnimation';
+import EpisodeCard from '../../components/episodeCard';
+import MainLayout from '../../layouts/MainLayout';
+import Pagination from '../../components/pagination';
+
 
 const HomeScreen = () => {
-  const { data, isLoading, isError } = useFetchAllEpisodesQuery({})
-  const colors = useThemeColors()
-  const [searchValue, setSearchValue] = useState<string>('')
+  const colors = useThemeColors();
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const { data, isLoading, isError } = useFetchAllEpisodesQuery(currentPage);
 
 
+  //There are 3 pages of data in the API
+  const totalPage = 3
+  console.log(currentPage , 'currentPage');
+  
+  const filteredEpisodes = data?.results.filter((item: EpisodeItemTypes) =>
+    item.name.toLocaleLowerCase().includes(searchValue.toLowerCase()) || item.episode.toLocaleLowerCase().includes(searchValue.toLowerCase())
+  ) ?? [];
 
-  const filteredEpisodes = data?.results.filter((item: EpisodeItemTypes) => (
-    item.name.toLocaleLowerCase().includes(searchValue.toLowerCase()) || item.episode.toLocaleLowerCase().includes(searchValue.toLowerCase()))
-  )
 
-  const renderItems: ListRenderItem<EpisodeItemTypes> = ({ item, index }) => <EpisodeCard episode={item} />
+  const renderItems: ListRenderItem<EpisodeItemTypes> = ({ item }) => <EpisodeCard episode={item} />;
 
   const renderContent = () => {
-    if (isLoading) return <Loading />
-    else if (isError) return <Text>An error occured</Text>
+    if (isLoading) return <Loading />;
+    if (isError) return <Text>An error occurred</Text>;
 
-    return <FlatList
-      data={filteredEpisodes ?? []}
-      renderItem={renderItems}
-      snapToAlignment='center'
-      showsVerticalScrollIndicator={false}
-      ListHeaderComponent={<SearchInput searchValue={searchValue} setSearchValue={setSearchValue} placeHolder='Search by episode name' />}
-
-    />
-  }
-
+    return (
+      <>
+        <FlatList
+          data={filteredEpisodes}
+          renderItem={renderItems}
+          snapToAlignment="center"
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={<SearchInput searchValue={searchValue} setSearchValue={setSearchValue} placeHolder="Search by episode name" />}
+          ListFooterComponent={ <Pagination currentPage={currentPage} totalPages={totalPage} onPageChange={setCurrentPage} />}
+        />
+       
+      </>
+    );
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.third }}>
       <MainLayout>
-
-        {
-          renderContent()
-        }
+        {renderContent()}
       </MainLayout>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

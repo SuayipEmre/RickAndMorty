@@ -14,11 +14,13 @@ const EpisodeService = createApi({
     endpoints: (builder) => ({
 
         fetchAllEpisodes: builder.query({
-            query: () => {
+            query: (page : number) => {
                 return {
                     url: '/episode',
                     method: 'GET',
-                    
+                    params:{
+                        page
+                    }
                 }
             }
         }),
