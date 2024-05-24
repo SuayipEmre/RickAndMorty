@@ -1,22 +1,14 @@
-import { FlatList,  ListRenderItem,  Text, View } from 'react-native'
+import {  View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { MainNavigatorStackParamList } from '../../types/NavigatorsTypes'
 import { useFetchEpisodeDetailsQuery } from '../../services/EpisodeService'
 import MainLayout from '../../layouts/MainLayout'
 import { useThemeColors } from '../../store/features/appearance/hooks'
-import EpisodeCard from '../../components/episodeCard'
-import SearchInput from '../../components/searchBar'
-import SmallCharacterCard from '../../components/smallCharacterCard'
-
+import EpisodeDetailsScreenContainer from '../../containers/episodeDetailsScreenContainer'
 
 type Props = NativeStackScreenProps<MainNavigatorStackParamList, 'EpisodeDetails'>
 
-
-type CharacterArrayTypes = {
-    url: string,
-    character: Character
-}
 const EpisodeDetails: React.FC<Props> = ({ route }) => {
 
     const [searchCharacterValue, setSearchCharacterValue] = useState<string>('')
@@ -25,11 +17,8 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
     const { data, isLoading, isError } = useFetchEpisodeDetailsQuery(route.params.episode_id)
     const colors = useThemeColors()
 
-
-
     //filter characters by search value.
     const filteredCharacters = () => characters?.filter((item: CharacterArrayTypes) => item?.character?.name?.toLowerCase().includes(searchCharacterValue.toLowerCase()))
-
 
     useEffect(() => {
         if (isError && isLoading) return;
@@ -46,37 +35,15 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
         });
     }, [data, isError, isLoading])
 
-
-    const renderCharactersItems: ListRenderItem<CharacterArrayTypes> = ({ item }) => <SmallCharacterCard
-    character={item.character}
-    />
-
-
-    const charactersListHeaderItems = () => (
-        <>
-            <SearchInput searchValue={searchCharacterValue} setSearchValue={setSearchCharacterValue} placeHolder='Search Character' />
-            <EpisodeCard episode={data} />
-            <Text style={{ color: colors.accent, fontSize: 17, marginVertical: 6, }}>Characters</Text>
-
-        </>
-    )
-
-
-
     return (
         <View style={{ backgroundColor: colors.third, flex: 1, }}>
             <MainLayout>
-
-
-                <FlatList
-                    data={searchCharacterValue.length > 1 ? filteredCharacters() : characters ?? []}
-                    renderItem={renderCharactersItems}
-                    keyExtractor={(item, index) => index.toString()}
-                    snapToAlignment='center'
-                    ListHeaderComponent={charactersListHeaderItems}
-                    showsVerticalScrollIndicator={false}
-
-                />
+                <EpisodeDetailsScreenContainer
+                 characters={searchCharacterValue.length > 1 ? filteredCharacters() : characters ?? []} 
+                 episodeData={data}
+                 searchCharacterValue={searchCharacterValue}
+                 setSearchCharacterValue={setSearchCharacterValue}
+                 />
             </MainLayout>
         </View>
     )

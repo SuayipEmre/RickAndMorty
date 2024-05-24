@@ -1,32 +1,29 @@
-import { FlatList, ListRenderItem, StyleSheet, Text, View } from 'react-native'
+import { FlatList, ListRenderItem, StyleSheet} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
-import { getFavoriteCharactersFromStorage } from '../../utils/getFavoriteCharacters'
 import MainLayout from '../../layouts/MainLayout'
 import SmallCharacterCard from '../../components/smallCharacterCard'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useIsRemoveCharacterModalOpen } from '../../store/features/removeCharacterModal/hooks'
 import RemoveFavoriteCharacterModal from '../../components/removeFavoriteCharacterModal'
 import { setRemoveCharactersModal } from '../../store/features/removeCharacterModal/actions'
+import { useFavoriteCharacters } from '../../store/features/favoriteCharacterActions/hooks'
+import { getFavoriteCharacters } from '../../store/features/favoriteCharacterActions/actions'
 
 const FavoritesScreen = () => {
   const colors = useThemeColors()
-  const [favorites, setFavorites] = useState<Character[] | []>([])
   const [selectedCharacter, setSelectedCharacter] = useState<Character>({} as Character)
   const isRemoveModalOpen = useIsRemoveCharacterModalOpen()
 
+  const favoriteCharacters = useFavoriteCharacters()
+
+  
   useEffect(() => {
-
-    const getFavorites = async () => {
-      const favorites = await getFavoriteCharactersFromStorage()
-      setFavorites(favorites)
-    }
-
-
-    getFavorites()
+    getFavoriteCharacters()
   }, [])
 
-  const handleRemoveCharacterFromFavorites = (character : Character ) => {
+
+  const openRemoveCharacterModal  = (character : Character ) => {
     setRemoveCharactersModal(!isRemoveModalOpen)
     setSelectedCharacter(character)
   }
@@ -34,7 +31,7 @@ const FavoritesScreen = () => {
 
   const renderCharactersItems: ListRenderItem<Character> = ({ item }) => <SmallCharacterCard
     isFavorites
-    onPress={(character : Character) => handleRemoveCharacterFromFavorites(character)}
+    onPress={(character : Character) => openRemoveCharacterModal(character)}
     character={item}
   />
 
@@ -45,7 +42,7 @@ const FavoritesScreen = () => {
       <MainLayout>
 
         <FlatList
-          data={favorites ?? []}
+          data={favoriteCharacters ?? []}
           renderItem={renderCharactersItems}
           keyExtractor={(item, index) => index.toString()}
           snapToAlignment='center'

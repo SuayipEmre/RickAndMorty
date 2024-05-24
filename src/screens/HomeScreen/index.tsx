@@ -1,4 +1,4 @@
-import { ListRenderItem, StyleSheet, Text, View } from 'react-native'
+import { ListRenderItem, Text} from 'react-native'
 import React, { useState } from 'react'
 import { useFetchAllEpisodesQuery } from '../../services/EpisodeService'
 import { SafeAreaView } from 'react-native-safe-area-context'

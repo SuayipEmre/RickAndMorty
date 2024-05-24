@@ -5,6 +5,7 @@ import ModalButton from '../modalButton'
 import { setRemoveCharactersModal } from '../../store/features/removeCharacterModal/actions'
 import { useIsRemoveCharacterModalOpen } from '../../store/features/removeCharacterModal/hooks'
 import { removeFavoriteCharacter } from '../../utils/removeFavoriteCharacter'
+import { remove } from '../../store/features/favoriteCharacterActions/actions'
 
 
 type RemoveFavoriteCharacterModalPropsTypes = {
@@ -15,17 +16,6 @@ type RemoveFavoriteCharacterModalPropsTypes = {
 const RemoveFavoriteCharacterModal : React.FC<RemoveFavoriteCharacterModalPropsTypes> = ({characterName, characterID,}) => {
     const colors = useThemeColors()
     const isModalOpen = useIsRemoveCharacterModalOpen()
-
-    const remove = async () => {
-        try {
-            await removeFavoriteCharacter(characterID)
-            setRemoveCharactersModal(false)  // Başarılı olduktan sonra modalı kapat
-        } catch (error) {
-            Alert.alert("Error", "Failed to remove favorite character.", )  // Hata oluşursa kullanıcıya bildirin
-            console.log(error);
-            
-        }
-    }
     
     return (
         <View style={styles.centeredView}>
@@ -43,7 +33,7 @@ const RemoveFavoriteCharacterModal : React.FC<RemoveFavoriteCharacterModalPropsT
                                 flexDirection:'row',
                                 justifyContent:'space-between',
                         }}>
-                          <ModalButton isApproveButton message='Evet' onPress={remove} />
+                          <ModalButton isApproveButton message='Evet' onPress={() => remove(characterID)} />
                           <ModalButton isApproveButton={false} message='Hayır' onPress={() => setRemoveCharactersModal(false)} />
 
                        

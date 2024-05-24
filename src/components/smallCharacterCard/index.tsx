@@ -12,7 +12,7 @@ import RemoveFavoriteCharacterModal from '../removeFavoriteCharacterModal'
 type SmallCharacterCardPropsTypes = {
     isFavorites?: boolean,
     setRemoveFavoritesModal? : () => void,
-    onPress : (character : Character) => void,
+    onPress: (character : Character) => void,
     character : Character
 
 }
