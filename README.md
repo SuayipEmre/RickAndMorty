@@ -35,6 +35,7 @@ This is a rick and morty app made using react native.
 <div style="display: flex; "> 
     <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/homescreen.png"  width="300"/>
     <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/homesearch.png"  width="300"/>
+     <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/pagination.png"  width="300"/>
     <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/episodedetails.png"  width="300"/>
     <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/lightMode.png"  width="300"/>
     <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/charactersearch.png"  width="300"/>
