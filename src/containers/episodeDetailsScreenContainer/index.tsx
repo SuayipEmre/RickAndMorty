@@ -46,8 +46,6 @@ const EpisodeDetailsScreenContainer: React.FC<EpisodeDetailsScreenContainerProps
         currentPage * ITEMS_PER_PAGE
     )
 
-
-    
     return (
         <View>
             <FlatList

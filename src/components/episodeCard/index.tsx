@@ -1,5 +1,5 @@
 
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {  Image, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import { NavigationProp, useNavigation } from '@react-navigation/native'

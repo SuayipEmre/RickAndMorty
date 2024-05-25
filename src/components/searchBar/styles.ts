@@ -1,13 +1,12 @@
 import { Dimensions, StyleSheet } from "react-native"
+import commonStyles from "../../style/commonStyles"
 
 const { height } = Dimensions.get('screen')
 
 export default StyleSheet.create({
     container: {
-        flexDirection: 'row',
+        ...commonStyles.centerElements,
         width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
         alignSelf: 'center',
         gap: 12,
         marginBottom:12,

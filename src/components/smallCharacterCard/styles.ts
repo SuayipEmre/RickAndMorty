@@ -1,14 +1,14 @@
 import { Dimensions, StyleSheet } from "react-native"
+import commonStyles from "../../style/commonStyles"
 
 const { width, height } = Dimensions.get('screen')
 export default StyleSheet.create({
 
     image_card_container: {
-        flexDirection: 'row',
+        ...commonStyles.centerElementsInRow,
         justifyContent: 'space-between',
         marginVertical: 10,
         height: height * 0.15,
-        alignItems: 'center',
         paddingHorizontal: 10,
         borderRadius: 12,
     },

@@ -8,9 +8,9 @@ import MainLayout from '../../layouts/MainLayout'
 import Loading from '../../components/loadingAnimation'
 import CharacterDetailsScreenContainer from '../../containers/characterDetailsScreenContainer'
 
-type Props = NativeStackScreenProps<MainNavigatorStackParamList, 'CharacterDetailsScreen'>
+type CharacterDetailsScreenPropsTypes = NativeStackScreenProps<MainNavigatorStackParamList, 'CharacterDetailsScreen'>
 
-const CharacterDetailsScreen: React.FC<Props> = ({ route }) => {
+const CharacterDetailsScreen: React.FC<CharacterDetailsScreenPropsTypes> = ({ route }) => {
 
     const { data, isLoading, isError } = useFetchCharacterQuery(route.params.character_id)
     const colors = useThemeColors()
@@ -25,9 +25,7 @@ const CharacterDetailsScreen: React.FC<Props> = ({ route }) => {
     return (
         <View style={{ backgroundColor: colors.third, flex: 1, }}>
             <MainLayout>
-
                 {renderContent()}
-
             </MainLayout>
         </View>
     )

@@ -1,6 +1,8 @@
 import { Dimensions, StyleSheet } from "react-native"
+import commonStyles from "../../style/commonStyles"
 
-const { width, height } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
+
 export default StyleSheet.create({
     container: {
         marginHorizontal: 2,
@@ -11,8 +13,7 @@ export default StyleSheet.create({
     },
 
     top_content_container:{
-        flexDirection:'row',
-        alignItems:'center',
+        ...commonStyles.centerElementsInRow,
         justifyContent:'space-between',
         marginBottom:12,
     }

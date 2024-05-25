@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
+import commonStyles from "../../style/commonStyles"
 
 export default StyleSheet.create({
     container: {
-        flexDirection: 'row',
+       ...commonStyles.centerElementsInRow,
         justifyContent: 'space-between',
-        alignItems: 'center',
         marginVertical: 10,
         paddingHorizontal: 20,
     },

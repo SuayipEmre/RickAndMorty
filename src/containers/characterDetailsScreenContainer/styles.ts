@@ -1,6 +1,8 @@
 import { Dimensions, StyleSheet } from "react-native"
+import commonStyles from "../../style/commonStyles"
 
 const { width, height } = Dimensions.get('window')
+
 export default StyleSheet.create({
     image: {
         width: '100%',
@@ -9,8 +11,7 @@ export default StyleSheet.create({
         marginTop: 6,
     },
     favorites_button: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        ...commonStyles.centerElementsInRow,
         justifyContent: 'space-between',
         height: height * 0.06,
         paddingHorizontal: 12,

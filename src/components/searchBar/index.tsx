@@ -1,5 +1,5 @@
-import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useState } from 'react'
+import { TextInput, View } from 'react-native'
+import React from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import Ant from 'react-native-vector-icons/AntDesign'
 import styles from './styles'

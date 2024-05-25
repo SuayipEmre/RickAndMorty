@@ -7,9 +7,9 @@ import MainLayout from '../../layouts/MainLayout'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import EpisodeDetailsScreenContainer from '../../containers/episodeDetailsScreenContainer'
 
-type Props = NativeStackScreenProps<MainNavigatorStackParamList, 'EpisodeDetails'>
+type EpisodeDetailsPropsTypes = NativeStackScreenProps<MainNavigatorStackParamList, 'EpisodeDetails'>
 
-const EpisodeDetails: React.FC<Props> = ({ route }) => {
+const EpisodeDetails: React.FC<EpisodeDetailsPropsTypes> = ({ route }) => {
 
     const [searchCharacterValue, setSearchCharacterValue] = useState<string>('')
     const [characters, setCharacters] = useState<[] | CharacterArrayTypes[]>([])

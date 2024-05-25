@@ -5,9 +5,6 @@ import { NavigationProp, useNavigation } from '@react-navigation/native'
 import { MainNavigatorStackParamList } from '../../types/NavigatorsTypes'
 import styles from './styles'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
-import { useIsRemoveCharacterModalOpen } from '../../store/features/removeCharacterModal/hooks'
-import { setRemoveCharactersModal } from '../../store/features/removeCharacterModal/actions'
-import RemoveFavoriteCharacterModal from '../removeFavoriteCharacterModal'
 
 type SmallCharacterCardPropsTypes = {
     isFavorites?: boolean,

@@ -1,6 +1,6 @@
 import notifee from '@notifee/react-native';
 
-export const onDisplayNotification = async() => {
+export const onLimitDisplayNotification = async() => {
         
     // Request permissions (required for iOS)
     await notifee.requestPermission()

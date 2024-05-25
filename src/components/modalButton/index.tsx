@@ -1,7 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
-
+import styles from './styles'
 
 type ModalButtonPropsTypes = {
     message : string,
@@ -23,14 +23,3 @@ const ModalButton : React.FC<ModalButtonPropsTypes> = ({isApproveButton, message
 
 export default ModalButton
 
-const styles = StyleSheet.create({
-    container:{
-        width : '30%',
-        alignItems:'center',
-        paddingVertical:6,
-        borderRadius:6,
-    },
-
-    button:{}
-  
-})

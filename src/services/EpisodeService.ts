@@ -6,7 +6,7 @@ import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 const baseUrl = "https://rickandmortyapi.com/api"
 
 const EpisodeService = createApi({
-    reducerPath: 'genres service',
+    reducerPath: 'episode service',
 
     baseQuery: fetchBaseQuery({
         baseUrl: baseUrl,
@@ -34,10 +34,6 @@ const EpisodeService = createApi({
                 }
             }
         }),
-       
-
-       
-
 
     })
 })

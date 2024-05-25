@@ -1,4 +1,4 @@
-import {  Image,  Text, TouchableOpacity, View } from 'react-native'
+import { Image,  Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import CharacterInformationItem from '../../components/characterInformationItem'
@@ -6,9 +6,8 @@ import { addCharacterToFavorites, removeCharacterFromFavorites } from '../../sto
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import styles from './styles'
 import { useFavoriteCharacters } from '../../store/features/favoriteCharacterActions/hooks'
-import notifee from '@notifee/react-native';
-import { onDisplayNotification } from '../../helpers/displayNotification'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
+import { onLimitDisplayNotification } from '../../helpers/displayNotification'
 
 type CharacterDetailsScreenContainerPropsTypes = {
     characterData: Character
@@ -27,7 +26,7 @@ const CharacterDetailsScreenContainer: React.FC<CharacterDetailsScreenContainerP
 
     const handleAddCharacterToFavorites = () => {
 
-        if(favoriteCharacters.length > 9 )  return onDisplayNotification() 
+        if(favoriteCharacters.length == 10 ) return onLimitDisplayNotification() 
         
         addCharacterToFavorites(characterData)
         setIsFavoriteCharacter(true)
