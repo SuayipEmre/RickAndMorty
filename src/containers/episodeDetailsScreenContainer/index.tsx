@@ -1,5 +1,5 @@
 import { FlatList, ListRenderItem, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import SearchInput from '../../components/searchBar'
 import EpisodeCard from '../../components/episodeCard'
 import SmallCharacterCard from '../../components/smallCharacterCard'
@@ -24,14 +24,8 @@ const EpisodeDetailsScreenContainer: React.FC<EpisodeDetailsScreenContainerProps
 }) => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const colors = useThemeColors()
-    const charactersListHeaderItems = () => (
-        <>
-            <SearchInput searchValue={searchCharacterValue} setSearchValue={setSearchCharacterValue} placeHolder='Search Character' />
-            <EpisodeCard episode={episodeData} />
-            <Text style={{ color: colors.accent, fontSize: 17, marginVertical: 6, }}>Characters</Text>
-
-        </>
-    )
+    
+    
 
     const renderCharactersItems: ListRenderItem<CharacterArrayTypes> = ({ item }) => <SmallCharacterCard
         character={item.character}
@@ -41,7 +35,7 @@ const EpisodeDetailsScreenContainer: React.FC<EpisodeDetailsScreenContainerProps
     //Filtered characters
     const filteredCharacters = characters?.filter((item: CharacterArrayTypes) =>
         item?.character?.name?.toLowerCase().includes(searchCharacterValue.toLowerCase())
-    );
+    )
 
     const totalPages = Math.ceil(filteredCharacters.length / ITEMS_PER_PAGE);
 
@@ -50,8 +44,10 @@ const EpisodeDetailsScreenContainer: React.FC<EpisodeDetailsScreenContainerProps
     const currentCharacters = filteredCharacters.slice(
         (currentPage - 1) * ITEMS_PER_PAGE,
         currentPage * ITEMS_PER_PAGE
-    );
+    )
 
+
+    
     return (
         <View>
             <FlatList
@@ -59,13 +55,22 @@ const EpisodeDetailsScreenContainer: React.FC<EpisodeDetailsScreenContainerProps
                 renderItem={renderCharactersItems}
                 keyExtractor={(item, index) => index.toString()}
                 snapToAlignment='center'
-                ListHeaderComponent={charactersListHeaderItems}
+                ListHeaderComponent={ <>
+                    <SearchInput searchValue={searchCharacterValue} setSearchValue={setSearchCharacterValue} placeHolder='Search Character' />
+                    <EpisodeCard episode={episodeData} />
+                    <Text style={{ color: colors.accent, fontSize: 17, marginVertical: 6, }}>Characters</Text>
+        
+                </>}
                 showsVerticalScrollIndicator={false}
-                ListFooterComponent={<Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={setCurrentPage}
-                />}
+                ListFooterComponent={
+                    searchCharacterValue.length < 1 ? (
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={setCurrentPage}
+                        />
+                    ) : null
+                }
 
             />
         </View>

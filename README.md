@@ -11,7 +11,7 @@ This is a rick and morty app made using react native.
 3. Characters
 4. Add Characters to favorites or remove from favorites.
 5. Dark And Light Theme
-
+6. Search episodes or characters
 
 ### Tech && Tools
 1. React Native

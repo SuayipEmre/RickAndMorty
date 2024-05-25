@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ListRenderItem, Text, FlatList, SafeAreaView } from 'react-native';
 import { useFetchAllEpisodesQuery } from '../../services/EpisodeService';
 import SearchInput from '../../components/searchBar';
@@ -18,7 +18,7 @@ const HomeScreen = () => {
 
   //There are 3 pages of data in the API
   const totalPage = 3
-  
+
   const filteredEpisodes = data?.results.filter((item: EpisodeItemTypes) =>
     item.name.toLocaleLowerCase().includes(searchValue.toLowerCase()) || item.episode.toLocaleLowerCase().includes(searchValue.toLowerCase())
   ) ?? [];
@@ -38,9 +38,17 @@ const HomeScreen = () => {
           snapToAlignment="center"
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={<SearchInput searchValue={searchValue} setSearchValue={setSearchValue} placeHolder="Search by episode name" />}
-          ListFooterComponent={ <Pagination currentPage={currentPage} totalPages={totalPage} onPageChange={setCurrentPage} />}
+          ListFooterComponent={
+            searchValue.length < 1 ? (
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPage}
+                    onPageChange={setCurrentPage}
+                />
+            ) : null
+        }
         />
-       
+
       </>
     );
   };

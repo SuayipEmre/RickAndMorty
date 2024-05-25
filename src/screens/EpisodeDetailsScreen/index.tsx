@@ -16,10 +16,7 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
     const [charactersLoading, setCharactersLoading] = useState(true)
     const { data, isLoading, isError } = useFetchEpisodeDetailsQuery(route.params.episode_id)
     const colors = useThemeColors()
-
-    //filter characters by search value.
-    const filteredCharacters = () => characters?.filter((item: CharacterArrayTypes) => item?.character?.name?.toLowerCase().includes(searchCharacterValue.toLowerCase()))
-
+    
     useEffect(() => {
         if (isError && isLoading) return;
 
@@ -33,13 +30,13 @@ const EpisodeDetails: React.FC<Props> = ({ route }) => {
                 setCharactersLoading(false);
             }
         });
-    }, [data, isError, isLoading])
+    }, [data])
 
     return (
         <View style={{ backgroundColor: colors.third, flex: 1, }}>
             <MainLayout>
                 <EpisodeDetailsScreenContainer
-                 characters={searchCharacterValue.length > 1 ? filteredCharacters() : characters ?? []} 
+                 characters={ characters ?? []} 
                  episodeData={data}
                  searchCharacterValue={searchCharacterValue}
                  setSearchCharacterValue={setSearchCharacterValue}

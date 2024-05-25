@@ -14,7 +14,6 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
     const colors = useThemeColors()
 
-
     const handlePreviousPage = () => currentPage > 1 && onPageChange(currentPage - 1)
         
 

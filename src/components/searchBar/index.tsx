@@ -2,6 +2,7 @@ import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import Ant from 'react-native-vector-icons/AntDesign'
+import styles from './styles'
 
 
 type SearchInputPropsTypes = {
@@ -29,24 +30,3 @@ const SearchInput : React.FC<SearchInputPropsTypes> = ({searchValue, setSearchVa
 
 export default SearchInput
 
-
-const { height } = Dimensions.get('screen')
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
-        gap: 12,
-        marginBottom:12,
-    },
-    input: {
-        width: '90%',
-        height: height * 0.05,
-        borderRadius: 12,
-        paddingLeft: 6,
-
-    }
-})

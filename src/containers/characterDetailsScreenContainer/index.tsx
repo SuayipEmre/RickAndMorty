@@ -1,4 +1,4 @@
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {  Image,  Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useThemeColors } from '../../store/features/appearance/hooks'
 import CharacterInformationItem from '../../components/characterInformationItem'
@@ -8,7 +8,7 @@ import styles from './styles'
 import { useFavoriteCharacters } from '../../store/features/favoriteCharacterActions/hooks'
 import notifee from '@notifee/react-native';
 import { onDisplayNotification } from '../../helpers/displayNotification'
-
+import EvilIcons from 'react-native-vector-icons/EvilIcons'
 
 type CharacterDetailsScreenContainerPropsTypes = {
     characterData: Character
@@ -59,7 +59,7 @@ const CharacterDetailsScreenContainer: React.FC<CharacterDetailsScreenContainerP
                         setIsFavoriteCharacter(false)
                     }}>
                         <Text style={{ color: colors.primary }}>Remove From Favorites</Text>
-                        <MaterialIcons name='favorite' color={'red'} size={24} />
+                        <EvilIcons name='trash' color={'red'} size={24} />
                     </TouchableOpacity>
                 )
             }
