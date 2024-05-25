@@ -23,6 +23,13 @@ This is a rick and morty app made using react native.
 7. React Native Notifee
 8. React Native Lottie
 
+### Usage
+1. Clone the repository: `https://github.com/SuayipEmre/RickAndMorty.git`
+2. Install dependencies: 
+    - `npm install`
+    - `cd ios && pod install`
+    - `cd ..`
+3. Start the project: `npm run ios or npm run android`
 
 
 <div style="display: flex; "> 
