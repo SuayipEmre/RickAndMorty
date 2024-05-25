@@ -6,6 +6,9 @@ import { addCharacterToFavorites, removeCharacterFromFavorites } from '../../sto
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import styles from './styles'
 import { useFavoriteCharacters } from '../../store/features/favoriteCharacterActions/hooks'
+import notifee from '@notifee/react-native';
+import { onDisplayNotification } from '../../helpers/displayNotification'
+
 
 type CharacterDetailsScreenContainerPropsTypes = {
     characterData: Character
@@ -24,14 +27,13 @@ const CharacterDetailsScreenContainer: React.FC<CharacterDetailsScreenContainerP
 
     const handleAddCharacterToFavorites = () => {
 
-        if(favoriteCharacters.length > 9 ){
-            console.log('there are 10 favorite character !');
-            
-            return
-        }
+        if(favoriteCharacters.length > 9 )  return onDisplayNotification() 
+        
         addCharacterToFavorites(characterData)
         setIsFavoriteCharacter(true)
     }
+
+
     
     return (
         <View>
