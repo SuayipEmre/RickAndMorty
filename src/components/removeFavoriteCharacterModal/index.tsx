@@ -32,8 +32,8 @@ const RemoveFavoriteCharacterModal : React.FC<RemoveFavoriteCharacterModalPropsT
                                 flexDirection:'row',
                                 justifyContent:'space-between',
                         }}>
-                          <ModalButton isApproveButton message='Evet' onPress={() => removeCharacterFromFavorites(characterID)} />
-                          <ModalButton isApproveButton={false} message='Hayır' onPress={() => setRemoveCharactersModal(false)} />
+                          <ModalButton isApproveButton message='Yes' onPress={() => removeCharacterFromFavorites(characterID)} />
+                          <ModalButton isApproveButton={false} message='No' onPress={() => setRemoveCharactersModal(false)} />
 
                        
                         </View>
