@@ -33,15 +33,15 @@ This is a rick and morty app made using react native.
 
 
 <div style="display: flex; "> 
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/homescreen.png" alt="login" width="300"/>
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/homesearch.png" alt="login" width="300"/>
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/episodedetails.png" alt="login" width="300"/>
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/lightMode.png" alt="login" width="300"/>
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/charactersearch.png" alt="login" width="300"/>
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/addtofavorites.png" alt="login" width="300"/>
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/limitnotification.png" alt="login" width="300"/>
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/favoritesscreen.png" alt="login" width="300"/>
-    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/removeModal.png" alt="login" width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/homescreen.png"  width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/homesearch.png"  width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/episodedetails.png"  width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/lightMode.png"  width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/charactersearch.png"  width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/addtofavorites.png"  width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/limitnotification.png" width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/favoritesscreen.png"  width="300"/>
+    <img src="https://raw.githubusercontent.com/SuayipEmre/RickAndMorty/main/src/assets/appImages/removeModal.png" width="300"/>
 </div>
 
 
