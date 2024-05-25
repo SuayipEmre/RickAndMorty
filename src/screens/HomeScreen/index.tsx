@@ -18,7 +18,6 @@ const HomeScreen = () => {
 
   //There are 3 pages of data in the API
   const totalPage = 3
-  console.log(currentPage , 'currentPage');
   
   const filteredEpisodes = data?.results.filter((item: EpisodeItemTypes) =>
     item.name.toLocaleLowerCase().includes(searchValue.toLowerCase()) || item.episode.toLocaleLowerCase().includes(searchValue.toLowerCase())
